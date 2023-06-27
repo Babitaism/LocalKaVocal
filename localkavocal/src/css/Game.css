@@ -1,0 +1,68 @@
+button{
+    text-align: center;
+    margin: 254px 0px 0px 306px;
+    color: blue;
+  }
+  .h1{
+    text-align: center;
+    margin: 77px -116px -252px -699px;  
+  }
+  .submitmsg{
+    text-align: center;
+    margin-top: 10px;
+  }
+  .form{
+    border-width: 2px;
+    margin: 47px 574px 90px 409px;
+    background-color: #CFFEF1;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 15px;
+    width: 400px;
+    max-width: 90%;
+    box-sizing: border-box;
+    padding: 70px;
+    margin: -3% auto 0;
+    position: relative;
+    z-index: 1;
+    border-top: 8px solid yellow;
+  }
+.span{
+  color: red;
+}
+.credential{
+  color: red;
+  margin-left: 551px;
+}
+.submit{
+  background-color: rgb(209, 232, 232);
+  margin: 22px 128px 36px 75px;
+}
+.login{
+  margin: 0px 0px 8px 7px; 
+  background-color: rgb(209, 232, 232);
+}
+  .email{
+    padding: 1px 50px 7px 0px;
+  
+  }
+  .fname{
+    padding: 1px 50px 7px 0px;
+  }
+  .lname{
+    padding: 1px 50px 7px 0px;
+  }
+  .password{
+    padding: 1px 50px 7px 0px;
+  }
+  .check{
+    margin-bottom:15px
+  }
+  .sign{
+    margin-bottom:15px;
+    padding: 10px 200px 130px 150px
+  }
+  .sub{
+    padding: -92px -61px -19px -5px;
+    margin-top: -143px;
+    margin-left: 741px;
+  }
