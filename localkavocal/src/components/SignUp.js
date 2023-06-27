@@ -167,7 +167,7 @@ function SignUp(props) {
       {loginForm()}
       <div className="sub">
         <Link style={{ textDecoration: "none" }} to="/login">
-          Click here Login
+          Login
         </Link>
       </div>
     </>
