@@ -9,4 +9,4 @@ const routing = [
     
   ]
       
-export default routing  
+export default routing;
