@@ -66,3 +66,8 @@ button{
     margin-top: -143px;
     margin-left: 741px;
   }
+ 
+  .row{
+    display: flex !important;
+  }
+  
