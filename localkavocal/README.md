@@ -4,4 +4,12 @@ pr instructions
 
 // git status
 
-//
+// git add . ==> (for all) 
+
+// git add (filename) ==> for adding files
+
+// check git status
+
+// git commit -m "comments"
+
+//git push
