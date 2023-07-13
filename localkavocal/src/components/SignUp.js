@@ -3,6 +3,7 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import Validation from "./Validation";
 import { SERVER_END_POINT } from "../configs/configuration";
+import callApi from "../httpClientWrapper/callApi";
 
 function SignUp(props) {
   const [values, setValues] = useState({
@@ -20,7 +21,8 @@ function SignUp(props) {
   }, [submitted]);
 
   function handleRequest(req) {
-    fetch(`${SERVER_END_POINT}/signup`, {
+    const signUpData = {
+      endPoint: "signup",
       method: "POST",
       body: JSON.stringify({
         firstName: values.firstName,
@@ -31,7 +33,8 @@ function SignUp(props) {
       headers: {
         "Content-type": "application/json",
       },
-    })
+    };
+    callApi(signUpData)
       .then((response) => response.json())
       .then((json) => {
         console.log(json, "ll");
@@ -158,7 +161,7 @@ function SignUp(props) {
       <pre className="submitmsg">
         {submitted ? (
           <h2>
-            "Hello You have registered successfully,please click on Next Page"
+            "Hello You have registered successfully,please click on LogIn Page"
           </h2>
         ) : (
           ""

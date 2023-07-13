@@ -1,22 +1,19 @@
-// //actions
-// export const loginAction = (userInfo) => {
-//     console.log('----------------login action called', userInfo)
-//     return {
-//       type: "LOGIN",
-//       payload: {
-//         loggedInAt: new Date().getTime(),
-//         data: userInfo,
-//       }
-//     };
-//   };
-
-// //reducers
-// export default function loginReducer(state = { value: 0 }, action) {
-//     console.log('pppppppppppppppp', action)
-//       switch (action.type) {
-//         case 'LOGIN':
-//           return { value: action.payload }
-//         default:
-//           return {}
-//       }
-//     }
+function arrangingArr(arr) {
+  let len = arr.length;
+  debugger
+  let temp = [];
+  let t2 = []
+  let flag = 0;
+  for (let i=0 ;i<len; i++){
+     t2.push(arr[i])
+     flag+=1;
+     if(flag == 3){
+        temp.push(t2)
+        flag = 0;
+        t2 = []
+     }
+  }
+  return temp
+}
+let arrangedArr = arrangingArr([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+console.log(arrangedArr);

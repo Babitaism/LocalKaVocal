@@ -17,7 +17,6 @@ props.rishu(userName)
 }
 
   function allRoutes() {
-    // console.log("-===========---", props);
     let routeArr = [];
     for (let i in routing) {
       let component = routing[i].component;
