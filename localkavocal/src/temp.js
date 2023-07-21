@@ -1,19 +1,45 @@
-function arrangingArr(arr) {
-  let len = arr.length;
-  debugger
-  let temp = [];
-  let t2 = []
-  let flag = 0;
-  for (let i=0 ;i<len; i++){
-     t2.push(arr[i])
-     flag+=1;
-     if(flag == 3){
-        temp.push(t2)
-        flag = 0;
-        t2 = []
-     }
+// let responseFromModel = [{ Burma: "Naypyitaw" }, { Burma: "Nataw" }];
+// function rename() {
+//  let blankarr = [];
+//   let obj = {};
+//  for(let i in responseFromModel){
+//   let values = responseFromModel[i].title
+//  obj[values]=responseFromModel[i]
+//  }
+//  for(let i in obj){
+//   blankarr.push(obj[i])
+//  }
+//  return blankarr
+// }
+
+// let x = rename(responseFromModel);
+// console.log(x);
+
+function duplicate() {
+  let blankarr = [];
+  let uniqueArr = [];
+  let uniqueObj = {};
+  for (let i in RowDataPacket) {
+    let obj = {};
+    obj["title"] = RowDataPacket[i].ProductSpecification;
+    blankarr.push(obj);
   }
-  return temp
+  for (let i in blankarr) {
+    let values = blankarr[i].title;
+    uniqueObj[values] = blankarr[i];
+  }
+  for (let i in uniqueObj) {
+    uniqueArr.push(uniqueObj[i]);
+  }
+  return uniqueArr;
 }
-let arrangedArr = arrangingArr([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
-console.log(arrangedArr);
+
+let RowDataPacket = [
+  { ProductSpecification: "puma" },
+  { ProductSpecification: "puma" },
+  { ProductSpecification: "denim" },
+  { ProductSpecification: "cat" },
+];
+
+let x = duplicate(RowDataPacket);
+console.log(x);

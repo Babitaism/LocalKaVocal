@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useState } from "react";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import Validation from "./Validation";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../actions/action";
-import { tokenAction } from "../actions/tokenAction";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import Button from "@mui/material/Button";
 import callApi from "../httpClientWrapper/callApi";
 
 function LogIn(props) {
@@ -22,7 +18,7 @@ function LogIn(props) {
   const [submitted, setSubmitted] = React.useState(false);
   const [errors, setErrors] = React.useState({});
   const [cookie, setCookie] = React.useState("");
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
   function handleValidation(event) {
     const loginData = {
@@ -34,9 +30,7 @@ function LogIn(props) {
       }),
     };
     callApi(loginData)
-      .then((response) => response.json())
       .then((userData) => {
-        console.log(userData, "login");
         document.cookie = `loginToken=${userData.token}`;
         dispatch(loginAction(userData));
         if (document.cookie != null) {

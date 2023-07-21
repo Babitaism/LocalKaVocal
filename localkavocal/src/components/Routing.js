@@ -13,7 +13,6 @@ const[userName,setUserName] = useState("")
 function babita(data){
 setUserName(data)
 console.log(userName,"data")
-props.rishu(userName)
 }
 
   function allRoutes() {

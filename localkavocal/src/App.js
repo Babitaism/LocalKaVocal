@@ -2,7 +2,6 @@ import React from "react";
 import { Provider } from 'react-redux'
 import ParentComponent from "./components/ParentComponent"
 import store from "./store/store";
-console.log(process.env)
 
 function App() {
   return (
