@@ -12,23 +12,24 @@ import { useSelector } from "react-redux";
 import callApi from "../httpClientWrapper/callApi";
 import { useDispatch } from "react-redux";
 import TextField from "@mui/material/TextField";
-import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import Autocomplete from "@mui/material/Autocomplete";
 import { autocompleteAction } from "../actions/autocompleteAction";
 
-const filter = createFilterOptions();
 function FreeSoloCreateOption() {
   const dispatch = useDispatch();
-  let brands;
-  const [value, setValue] = React.useState(null);
+  let brands = [];
+
   const store = useSelector((state) => state);
 
   function searchItems(event) {
     let value = event.target.value;
-    console.log(value, "vvvvvvvvvvv");
     searchbyBrand(value);
   }
 
   const searchbyBrand = (value) => {
+    if(value.trim().length == 0){
+      return []
+    }
     const searchData = {
       endPoint: `searchItems/?item=${value}`,
       method: "GET",
@@ -49,29 +50,25 @@ function FreeSoloCreateOption() {
     store.autocompleteReducer &&
     store.autocompleteReducer.value
   ) {
-    console.log("hiiiiiiiiii");
-    brands = store.autocompleteReducer.value.data.message;
-    console.log(brands, "brrrr");
+    brands = store.autocompleteReducer.value.data.message
   }
-
-  //  onInputChange={(e) => searchItems(e)}
   return (
     <Autocomplete
-      value={value}
       onInputChange={(e) => searchItems(e)}
-      
-      selectOnFocus
-      clearOnBlur
-      handleHomeEndKeys
       id="free-solo-with-text-demo"
-      options={[]}
-      
-      renderOption={(props, option) => <li {...props}>{option.title}</li>}
+      options={brands.map((option) => option.title)}
       sx={{ width: 300 }}
       freeSolo
-      renderInput={(params) => (
-        <TextField {...params} label="Free solo with text demo" />
-      )}
+          renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Search.."
+            InputProps={{
+              ...params.InputProps,
+              type: 'search',
+            }}
+          />
+        )}
     />
   );
 }
