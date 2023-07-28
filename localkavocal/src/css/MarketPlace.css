@@ -73,6 +73,7 @@ button{
  
   .row{
     display: flex !important;
+    padding: 1px 5px 6px 7px;
   }
   .div{
     margin: 528px ; 
@@ -86,4 +87,21 @@ button{
   .custom-flex{
     display: inline-flex !important;
   }
-  
+  .css-1wuilmg-MuiAutocomplete-root{
+box-sizing: 7px 7px 7px 7px !important;
+background-color: antiquewhite;
+width: 60% !important;
+  }
+.margin-right{
+margin-right:7%;
+}
+.boxsize{
+  padding: 10px;
+  box-shadow: 1px 0px 8px 2px #888888 !important
+}
+.breadscrumb--{
+  font-size: 80% !important;
+}
+.aaasize{
+  font-size: 100% !important; 
+}

@@ -14,6 +14,8 @@ import { useDispatch } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { autocompleteAction } from "../actions/autocompleteAction";
+import { brandAction } from "../actions/brandAction";
+
 
 function FreeSoloCreateOption() {
   const dispatch = useDispatch();
@@ -23,13 +25,34 @@ function FreeSoloCreateOption() {
 
   function searchItems(event) {
     let value = event.target.value;
+    console.log(value,"valueauto")
     searchbyBrand(value);
   }
 
+  function searchItems1(event) {
+    let value = event.target.innerText;
+    console.log(value,"valuesearch1")
+    fetchProductInfo(value)
+  }
+
+  const  fetchProductInfo = (value) => {
+    console.log(value,"value")
+    const searchForImages = {
+      endPoint: `fetchProductInfo/?item=${value}`,
+      method: "GET",
+    };
+
+    callApi(searchForImages)
+      .then((brand) => {
+        console.log(brand, "response");
+        dispatch(brandAction(brand));
+      })
+      .catch(function (err) {
+        console.log("----", err);
+      });
+  };
+
   const searchbyBrand = (value) => {
-    if(value.trim().length == 0){
-      return []
-    }
     const searchData = {
       endPoint: `searchItems/?item=${value}`,
       method: "GET",
@@ -37,11 +60,10 @@ function FreeSoloCreateOption() {
 
     callApi(searchData)
       .then((brand) => {
-        console.log(brand, "response");
         dispatch(autocompleteAction(brand));
       })
       .catch(function (err) {
-        console.log("----", err);
+        console.log("--err--", err);
       });
   };
 
@@ -50,25 +72,26 @@ function FreeSoloCreateOption() {
     store.autocompleteReducer &&
     store.autocompleteReducer.value
   ) {
-    brands = store.autocompleteReducer.value.data.message
+    brands = store.autocompleteReducer.value.data.message;
   }
   return (
     <Autocomplete
       onInputChange={(e) => searchItems(e)}
+       onChange={(e) => searchItems1(e)}
       id="free-solo-with-text-demo"
       options={brands.map((option) => option.title)}
       sx={{ width: 300 }}
       freeSolo
-          renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Search.."
-            InputProps={{
-              ...params.InputProps,
-              type: 'search',
-            }}
-          />
-        )}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Search.."
+          InputProps={{
+            ...params.InputProps,
+            type: "search",
+          }}
+        />
+      )}
     />
   );
 }
@@ -77,6 +100,8 @@ export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const store = useSelector((state) => state);
   const isMenuOpen = Boolean(anchorEl);
+  const showSearch = React.useRef(false);
+  const [msg,setMsg] = React.useState("hi")
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -92,6 +117,25 @@ export default function PrimarySearchAppBar() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  function handleProfile(){
+    console.log("hiii")
+   return(
+    setMsg("hiiii")
+   )
+  };
+
+  const showSearchMenu = () => {
+    // console.log("store", store)
+    if (
+      store &&
+      store.hasOwnProperty("loginReducer") &&
+      store.loginReducer.value &&
+      store.loginReducer.value.isUserLoggedIn
+    ) {
+      showSearch.current = true;
+    }
   };
 
   const menuId = "primary-search-account-menu";
@@ -111,7 +155,7 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleProfile}>Profile</MenuItem>
       <MenuItem onClick={handleLogout}>LogOut</MenuItem>
     </Menu>
   );
@@ -122,7 +166,8 @@ export default function PrimarySearchAppBar() {
         <AppBar position="static">
           <Toolbar>
             <MenuIcon />
-            <FreeSoloCreateOption />
+            {showSearchMenu()}
+            {showSearch.current && <FreeSoloCreateOption />}
             <Box sx={{ flexGrow: 1 }} />
             <IconButton
               size="large"
@@ -138,12 +183,10 @@ export default function PrimarySearchAppBar() {
           </Toolbar>
         </AppBar>
         {store &&
-          store.hasOwnProperty("value") &&
-          store.value &&
-          store.value.hasOwnProperty("isUserLoggedIn") &&
-          store.value.isUserLoggedIn &&
+          store.hasOwnProperty("loginReducer") &&
+          store.loginReducer.value &&
+          store.loginReducer.value.isUserLoggedIn &&
           renderMenu}
-        {renderMenu}
       </Box>
     </div>
   );

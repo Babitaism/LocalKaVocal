@@ -12,6 +12,8 @@ import Container from "react-bootstrap/Container";
 import { IMAGE_PER_ROW } from "../configs/configuration";
 import { SERVER_END_POINT } from "../configs/configuration";
 import { brandAction } from "../actions/brandAction";
+import { Breadcrumb } from "react-bootstrap";
+import CustomSeparator from "./Breadcrumbs";
 
 function MarketPlace() {
   const dispatch = useDispatch();
@@ -27,25 +29,26 @@ function MarketPlace() {
     let flag = 0;
     let count = 0;
     for (let i = 0; i < msg.length; i++) {
-      let id = msg[i].ID;
+      let path = msg[i].ProductImage ;
+      let product = msg[i].ProductName
       temp.push(
-        <Card sx={{ maxWidth: 190 }} key={i}>
-          <CardActionArea key={`a${i}`}>
+        <Card sx={{ maxWidth: 190 }} key={i} className="margin-right col-4 boxsize">
+          <CardActionArea key={`a${i}`}  >
             <CardMedia
               key={`b${i}`}
               component="img"
               height="160"
-              image={`${SERVER_END_POINT}/getTshirtImage/${id}`}
-              alt="T-Shirt"
+              image= {`${SERVER_END_POINT}/getImage?path=${path}`}
+              alt={product}
             />
-            <CardContent>
+            <CardContent  >
               <Typography
                 gutterBottom
                 variant="h7"
                 component="div"
                 key={`c${i}`}
               >
-                {msg[i].ProductSpecification} T-Shirt
+              {msg[i].ProductSpecification} {product} 
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 <b>Rs.{msg[i].ProductPerPrice}</b>
@@ -58,8 +61,11 @@ function MarketPlace() {
       count += 1;
       if (flag === IMAGE_PER_ROW) {
         blankArr.push(
-          <div className="row" key={`d${i}`}>
-            {temp}
+          <div >
+            <div className="row" key={`d${i}`}>
+              {temp}
+            </div>
+            <hr />
           </div>
         );
         flag = 0;
@@ -67,11 +73,15 @@ function MarketPlace() {
       }
       if (
         (flag === IMAGE_PER_ROW - 2 && count === msg.length) ||
-        (flag === IMAGE_PER_ROW - 1 && count === msg.length)
+        (flag === IMAGE_PER_ROW - 1 && count === msg.length) ||
+        (flag === IMAGE_PER_ROW - 3 && count === msg.length)
       ) {
         blankArr.push(
-          <div className="row" key={`e${i}`}>
-            {temp}
+          <div >
+            <div className="row" key={`e${i}`}>
+              {temp }
+            </div>
+            <hr />
           </div>
         );
         flag = 0;
@@ -81,13 +91,11 @@ function MarketPlace() {
     allBrands = blankArr;
   };
 
-  console.log('is user loggged in se pehele')
   if (
     store.hasOwnProperty("loginReducer") &&
     store.loginReducer &&
     store.loginReducer.value
   ) {
-    console.log('is user loggged ic=f condition pe')
     isUserLoggedIn = store.loginReducer.value.isUserLoggedIn;
   }
 
@@ -96,7 +104,6 @@ function MarketPlace() {
     store.brandReducer &&
     store.brandReducer.value
   ) {
-    console.log("00000000000", store.brandReducer.value.data);
     allBrands = store.brandReducer.value.data;
     printItemCards(allBrands);
   }
@@ -111,19 +118,18 @@ function MarketPlace() {
         msg: "Babita Rawat",
       }),
     };
-    console.log('.api called')
+
     callApi(marketPlaceData)
       .then((resp) => {
         document.cookie = `loginToken=${resp.token}`;
         let name = resp.userName;
-        console.log(resp.userName, "name");
+        // console.log(resp.userName, "name");
         if (resp.status === 200) {
           setData(name);
           setIsLoggedin(true);
-          console.log('.then wala code')
-          dispatch(loginAction(resp));         
+          dispatch(loginAction(resp));
         } else {
-          setIsLoggedin(false); 
+          setIsLoggedin(false);
         }
       })
       .catch(function (err) {
@@ -136,22 +142,21 @@ function MarketPlace() {
       endPoint: "products",
       method: "POST",
     };
-    callApi(getProductsParams)
-      .then((resp) => {
-        dispatch(brandAction(resp));
-      });
+    callApi(getProductsParams).then((resp) => {
+      dispatch(brandAction(resp));
+    });
   };
 
   useEffect(() => {
     getUserData();
     getItem();
-    
   }, []);
-
 
   return (
     <>
-       <p>Hi {data}</p>
+     <CustomSeparator/>
+    <br></br>
+      <p>Hi {data}</p>
       <Container className="container-fluid">{allBrands}</Container>
     </>
   );
