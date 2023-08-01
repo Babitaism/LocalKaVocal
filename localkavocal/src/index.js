@@ -5,11 +5,12 @@ import './css/App.css';
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Game from "./css/Game.css";
+import "./css/MarketPlace.css";
 import { Provider } from 'react-redux'
 import store from "./store/store"
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
    

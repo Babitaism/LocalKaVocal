@@ -1,22 +1,16 @@
 import React from "react";
 import Routing from "./Routing";
 import Navbar from "./Navbar";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+// import { useSelector } from "react-redux";
+
 
 function ParentComponent() {
-const store = useSelector((state) => state);
-
-  function rishu(name) {
-    console.log(name, "name");
-  }
+// const store = useSelector((state) => state);
 
   return (
     <div>
-      {/* <UserProvider value={this.user}> */}
       <Navbar />
-      <Routing rishu={rishu} />
-      {/* </UserProvider> */}
+      <Routing />
     </div>
   );
 }

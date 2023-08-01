@@ -1,30 +1,34 @@
 button{
     text-align: center;
-    margin: 254px 0px 0px 306px;
     color: blue;
   }
   .h1{
     text-align: center;
     margin: 77px -116px -252px -699px;  
   }
+  .sub{
+    font-weight: 600;
+  }
   .submitmsg{
     text-align: center;
     margin-top: 10px;
+    margin-bottom: 1%;
   }
   .form{
     border-width: 2px;
-    margin: 47px 574px 90px 409px;
+    margin-top: -6% !important;
+    margin: 47px 574px 90px 109px ;
     background-color: #CFFEF1;
     font-family: Verdana, Geneva, sans-serif;
     font-size: 15px;
     width: 400px;
     max-width: 90%;
     box-sizing: border-box;
-    padding: 70px;
+    padding:40px 19px 53px 73px;
     margin: -3% auto 0;
     position: relative;
     z-index: 1;
-    border-top: 8px solid yellow;
+    border-top: 10px solid yellow;
   }
 .span{
   color: red;
@@ -69,5 +73,35 @@ button{
  
   .row{
     display: flex !important;
+    padding: 1px 5px 6px 7px;
   }
-  
+  .div{
+    margin: 528px ; 
+  }
+ .box{
+  padding: 35px 8px 7px 0px !important;
+ } 
+  .css-1ri6ub7-MuiPaper-root-MuiCard-root{
+    max-width: none !important;
+  }
+  .custom-flex{
+    display: inline-flex !important;
+  }
+  .css-1wuilmg-MuiAutocomplete-root{
+box-sizing: 7px 7px 7px 7px !important;
+background-color: antiquewhite;
+width: 60% !important;
+  }
+.margin-right{
+margin-right:7%;
+}
+.boxsize{
+  padding: 10px;
+  box-shadow: 1px 0px 8px 2px #888888 !important
+}
+.breadscrumb--{
+  font-size: 80% !important;
+}
+.aaasize{
+  font-size: 100% !important; 
+}

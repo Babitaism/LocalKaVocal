@@ -126,7 +126,6 @@ function SignUp(props) {
 
   function handleChangeFname(event) {
     setValues({ ...values, firstName: event.target.value });
-    console.log(values.firstName, "values");
     props.babita(values.firstName);
   }
 
