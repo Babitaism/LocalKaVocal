@@ -1,10 +1,11 @@
 button{
     text-align: center;
-    color: blue;
+    color:rgb(8, 93, 93);
+    background-color: white;
   }
   .h1{
     text-align: center;
-    margin: 77px -116px -252px -699px;  
+    margin: 77px -116px -252px -699px;
   }
   .sub{
     font-weight: 600;
@@ -42,12 +43,12 @@ button{
   margin: 22px 128px 36px 75px;
 }
 .login{
-  margin: 0px 0px 8px 7px; 
+  margin: 0px 0px 8px 7px;
   background-color: rgb(209, 232, 232);
 }
   .email{
     padding: 1px 50px 7px 0px;
-  
+
   }
   .fname{
     padding: 1px 50px 7px 0px;
@@ -70,17 +71,16 @@ button{
     margin-top: -143px;
     margin-left: 741px;
   }
- 
   .row{
-    display: flex !important;
+    display: inline-flexbox ;
     padding: 1px 5px 6px 7px;
   }
   .div{
-    margin: 528px ; 
+    margin: 528px ;
   }
  .box{
   padding: 35px 8px 7px 0px !important;
- } 
+ }
   .css-1ri6ub7-MuiPaper-root-MuiCard-root{
     max-width: none !important;
   }
@@ -88,13 +88,13 @@ button{
     display: inline-flex !important;
   }
   .css-1wuilmg-MuiAutocomplete-root{
-box-sizing: 7px 7px 7px 7px !important;
-background-color: antiquewhite;
-width: 60% !important;
+   box-sizing: 7px 7px 7px 7px !important;
+   background-color: antiquewhite;
+   width: 60% !important;
   }
-.margin-right{
-margin-right:7%;
-}
+ .margin-right{
+  margin-right:7%;
+  }
 .boxsize{
   padding: 10px;
   box-shadow: 1px 0px 8px 2px #888888 !important
@@ -103,5 +103,103 @@ margin-right:7%;
   font-size: 80% !important;
 }
 .aaasize{
-  font-size: 100% !important; 
+  font-size: 100% !important;
 }
+.pagination{
+margin-left: 77%;
+margin-bottom:1%
+}
+.table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
+}
+ .th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  border: 1px solid black;
+}
+.td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  border: 1px solid black;
+}
+.card{
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  padding: 2px 16px;
+  width: 300px !important;
+  height:300px !important;
+  font-family: sans-serif;;
+  margin: 40px 0px 17px 50px !important;
+  font-size: medium;
+}
+.MuiBox-root{
+  margin: 0px 0px 13px 0px;
+}
+.button{
+  text-align: center;
+  margin: 228px;
+}
+.link{
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  font-size: 18px;
+}
+.fullname{
+  border: none;
+}
+.name{
+  border: none;
+  font-weight: 600;
+
+}
+.id{
+  border: none;
+  text-align: center;
+}
+.wishlistlink{
+  margin-left : 1157px;
+}
+.button1{
+  display: flex;
+  margin: 68px 0px 0px -37px;
+}
+.edit{
+ padding: 0px 27px 0px 25px;
+ margin: 0px 110px 0px 30px;
+ border: none;
+ font-weight: 500;
+ text-decoration: none;
+}
+.delete{
+  padding: 0px 27px 0px 25px;
+  border: none;
+  text-decoration: none;
+}
+.editadress{
+  margin: 7px 88px 0px 352px ;
+}
+.space{
+  padding: 4px 194px 0px 0px;
+}
+.bold{
+  font-weight: 500;
+}
+.addaddress{
+  padding: 122px 0px 0px 42px;
+  font-family: sans-serif;
+  font-size: xx-large;
+  color:black;
+}
+.address{
+  border: dashed 3px #c2c2c2 !important;
+}
+.wishlist{
+  padding: 0px 25px 0px 28px;
+  border: none;
+}
+

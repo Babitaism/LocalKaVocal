@@ -6,6 +6,7 @@ export const brandAction = (brand) => {
       payload: {
         BrandName: new Date().getTime(),
         data: brand,
+        isUserLoggedIn: true
       }
     };
   };

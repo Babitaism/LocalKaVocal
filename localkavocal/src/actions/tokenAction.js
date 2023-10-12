@@ -7,6 +7,7 @@ export const tokenAction = (userInfo) => {
       payload: {
         loggedInAt: new Date().getTime(),
         data: userInfo,
+        isUserLoggedIn: true
       }
     };
   };

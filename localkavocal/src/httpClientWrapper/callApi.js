@@ -1,7 +1,10 @@
 import { SERVER_END_POINT } from "../configs/configuration";
 import cookie from "react-cookie";
 
+
 export default function callApi (params){
+
+
     return fetch(`${SERVER_END_POINT}/${params.endPoint}`, {
         method: params.method,
         body: params.body,
@@ -17,7 +20,7 @@ export default function callApi (params){
         }
          return response;
       })
-      .catch(error => { 
+      .catch(error => {
           // console.log('request failed', error);
           if(error.status === 401 ){
             window.location.replace("/login");
