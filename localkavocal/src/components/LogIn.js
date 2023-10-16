@@ -5,8 +5,10 @@ import Validation from "./Validation";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../actions/action";
 import callApi from "../httpClientWrapper/callApi";
+import bcrypt from "bcryptjs"
 
 function LogIn(props) {
+  const salt = bcrypt.genSaltSync(10)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -18,15 +20,16 @@ function LogIn(props) {
   const [submitted, setSubmitted] = React.useState(false);
   const [errors, setErrors] = React.useState({});
   const [cookie, setCookie] = React.useState("");
-  // const [open, setOpen] = React.useState(false);
 
   function handleValidation(event) {
+    const password = values.password
+    const hashedPassword = bcrypt.hashSync(password, '$2a$10$CwTycUXWue0Thq9StjUM0u')
     const loginData = {
       endPoint: "login",
       method: "POST",
       body: JSON.stringify({
         email: values.email,
-        password: values.password,
+        password: hashedPassword,
       }),
     };
     callApi(loginData)

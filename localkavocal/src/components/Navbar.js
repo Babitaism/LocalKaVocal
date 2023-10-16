@@ -15,10 +15,13 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { autocompleteAction } from "../actions/autocompleteAction";
 import { brandAction } from "../actions/brandAction";
+import { Link } from "react-router-dom";
+
 
 
 function FreeSoloCreateOption() {
   const dispatch = useDispatch();
+
   let brands = [];
 
   const store = useSelector((state) => state);
@@ -41,7 +44,6 @@ function FreeSoloCreateOption() {
       endPoint: `fetchProductInfo/?item=${value}`,
       method: "GET",
     };
-
     callApi(searchForImages)
       .then((brand) => {
         console.log(brand, "response");
@@ -101,7 +103,6 @@ export default function PrimarySearchAppBar() {
   const store = useSelector((state) => state);
   const isMenuOpen = Boolean(anchorEl);
   const showSearch = React.useRef(false);
-  const [msg,setMsg] = React.useState("hi")
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -119,11 +120,17 @@ export default function PrimarySearchAppBar() {
     setAnchorEl(null);
   };
 
-  function handleProfile(){
-    console.log("hiii")
-   return(
-    setMsg("hiiii")
-   )
+  function toProfile(){
+    window.location.replace("/user-addresses")
+  };
+
+  function handleWishlist(){
+    window.location.replace("/wishlist")
+  };
+
+
+  function handleCart(){
+    window.location.replace("/cart")
   };
 
   const showSearchMenu = () => {
@@ -155,8 +162,11 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleProfile}>Profile</MenuItem>
+      <MenuItem onClick={toProfile}>Profile</MenuItem>
+      <MenuItem onClick={handleWishlist}>Wishlist</MenuItem>
+      <MenuItem onClick={handleCart}>Cart</MenuItem>
       <MenuItem onClick={handleLogout}>LogOut</MenuItem>
+
     </Menu>
   );
 
@@ -182,11 +192,12 @@ export default function PrimarySearchAppBar() {
             </IconButton>
           </Toolbar>
         </AppBar>
-        {store &&
+
+          {/* store &&
           store.hasOwnProperty("loginReducer") &&
           store.loginReducer.value &&
-          store.loginReducer.value.isUserLoggedIn &&
-          renderMenu}
+          store.loginReducer.value.isUserLoggedIn && */}
+          {renderMenu}
       </Box>
     </div>
   );

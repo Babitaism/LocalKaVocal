@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Validation from "./Validation";
 import { SERVER_END_POINT } from "../configs/configuration";
 import callApi from "../httpClientWrapper/callApi";
+import bcrypt from "bcryptjs"
 
 function SignUp(props) {
+  const salt = bcrypt.genSaltSync(10)
+
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -21,6 +24,10 @@ function SignUp(props) {
   }, [submitted]);
 
   function handleRequest(req) {
+    const password = values.password
+    // console.log(password,"pp")
+    const hashedPassword = bcrypt.hashSync(password, '$2a$10$CwTycUXWue0Thq9StjUM0u')
+    // console.log(hashedPassword,"hpppppp")
     const signUpData = {
       endPoint: "signup",
       method: "POST",
@@ -28,7 +35,7 @@ function SignUp(props) {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
-        password: values.password,
+        password: hashedPassword,
       }),
       headers: {
         "Content-type": "application/json",
@@ -126,7 +133,7 @@ function SignUp(props) {
 
   function handleChangeFname(event) {
     setValues({ ...values, firstName: event.target.value });
-    props.babita(values.firstName);
+    // props.babita(values.firstName);
   }
 
   function handleChangeLname(event) {

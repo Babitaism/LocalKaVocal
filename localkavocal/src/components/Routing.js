@@ -3,62 +3,45 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LogIn from "./LogIn";
 import NoPage from "./NoPage";
 import SignUp from "./SignUp";
-import MarketPlace  from "./MarketPlace"
+import MarketPlace from "./MarketPlace";
 import routing from "../configs/routing";
-import { useState } from "react";
+import UserAddresses from "./UserAddresses";
+import Wishlist from "./Wishlist";
+import EditAddress from "./EditAddress";
+import CardComponent from "./cardComponent";
+import AddAddress from "./AddAddress";
 
 function RoutingComponent(props) {
-const[userName,setUserName] = useState("")
-
-function babita(data){
-setUserName(data)
-console.log(userName,"data")
-}
 
   function allRoutes() {
     let routeArr = [];
     for (let i in routing) {
       let component = routing[i].component;
       routeArr.push(
-        <Route
-          key={"routing" + i}
-          path={routing[i].path}
-          element={component}
-        />
+        <Route key={"routing" + i} path={routing[i].path} element={component} />
       );
     }
     routeArr.push(
-        <Route
-        key={"xyz-localkavocal"}
-        path="/"
-        element={<SignUp babita = {babita}/>}
-      />,
-      <Route
-        key={"xyz-localkavocal"}
-        path="/login"
-        element={<LogIn/>}
-      />,
-       <Route
-       key={"xyz-localkavocal"}
-       path="/market-place"
-       element={<MarketPlace name = {userName}/>}
-     />,
-      <Route
-      key={"xyz-localkavocal"}
-      path="*"
-      element={<NoPage/>}
-    />,
+      <Route key={"xyz-localkavocal"} path="/" element={<SignUp />} />,
+      <Route key={"xyz-localkavocal"} path="/login" element={<LogIn />} />,
+      <Route key={"xyz-localkavocal"} path="/user-addresses" element={<UserAddresses />} />,
+      <Route key={"xyz-localkavocal"} path="/addAddress" element={<AddAddress />} />,
+      <Route key={"xyz-localkavocal"} path="/editaddress" element={<EditAddress />}/>,
+      <Route key={"xyz-localkavocal"} path="/cardcomponent" element={<CardComponent />}/>,
+      <Route key={"xyz-localkavocal"} path="/wishlist" element={<Wishlist />}/>,
+      <Route key={"xyz-localkavocal"} path="/market-place" element={<MarketPlace />}/>,
+      <Route key={"xyz-localkavocal"} path="*" element={<NoPage />} />
     );
     return routeArr;
   }
 
-    return (
-      <>
-        <BrowserRouter>
-          <Routes>{allRoutes()}</Routes>
-        </BrowserRouter>
-      </>
-    );
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>{allRoutes()}</Routes>
+      </BrowserRouter>
+    </>
+  );
 }
 
 export default RoutingComponent;
